@@ -48,7 +48,7 @@ def display_sample(path, img_cat, channel, n_img=5):
             plt.imshow(img)
         plt.show()
 
-def augment_image(path, k, degree, folder='test', bgcolor='gray', resize=1., print_interval = 200, t='augment'):
+def augment_image(path, k, degree, folder='test', bgcolor='gray', resize=1., print_interval = 200, t='augment', grayscale=True, scale=True):
     image_cnt = 0
     for c in os.listdir('{}/{}/{}'.format(path, k,folder)):
         print('path: ' + c)
@@ -62,7 +62,8 @@ def augment_image(path, k, degree, folder='test', bgcolor='gray', resize=1., pri
                 print('skip ' + i)
                 continue
             else :
-                image  = Image.open("{}/{}/{}/{}/{}".format(path, k,folder,c,i)).convert('L')
+                image = Image.open("{}/{}/{}/{}/{}".format(path, k,folder,c,i))
+                image = image.convert('L') if grayscale else image
          
             # image resize
             image = image.resize((int(image.size[0]*resize), int(image.size[1]*resize)))
@@ -74,8 +75,8 @@ def augment_image(path, k, degree, folder='test', bgcolor='gray', resize=1., pri
             
             # degree 만큼 회전하면서 파일 생성
             for r in range(360//degree):
-                rimage  = image.rotate(r*degree, fillcolor=bgcolor)
-                rimage  = toimage(np.array([math.log(i)*1.25 + 2 for i in np.array(rimage).flatten()/255]).reshape(256,256))
+                rimage  = image.rotate(r*degree)
+#                 rimage  = toimage(np.array([math.log(i)*1.25 + 2 for i in np.array(rimage).flatten()/255]).reshape(256,256)) if scale else rimage
                 rimage.save("{}/{}/{}/{}/{}-{}.png".format(path,k,t,c,i,r))
                 image_cnt += 1
                 image_cnt_in_c += 1

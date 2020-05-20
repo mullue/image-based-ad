@@ -33,8 +33,8 @@ def parse_args():
     parser.add_argument('--lr', type=float, default=0.000000005)
     parser.add_argument('--beta_1', type=float, default=0.9)
     parser.add_argument('--latent_dim', type=int, default=100)
-    parser.add_argument('--tmax', type=int, default=1)
-    parser.add_argument('--fmin', type=int, default=0)
+    parser.add_argument('--tmax', type=float, default=1.0)
+    parser.add_argument('--fmin', type=float, default=0.0)
 
     # log and outfile control
     parser.add_argument('--d_skip_interval', type=int, default=1)
