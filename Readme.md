@@ -5,5 +5,5 @@
 - 개발환경은 AWS SageMaker를 사용합니다.
 - 로컬 하드디스크에 20GB이상의 용량이 필요합니다.
 
-자세한 내용은 [mvtec_image_clsf.ipynb](1.mvtec_image_clsf.ipynb)파일을 참고합니다.
+자세한 내용은 [mvtec_image_clsf.ipynb](mvtec_image_clsf.ipynb)파일을 참고합니다.
 
